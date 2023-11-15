@@ -1,0 +1,49 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "John Doe",
+            "age": 30,
+            "address": {
+                "street": "123 Main Street",
+                "city": "Anytown",
+                "state": "CA",
+                "zipCode": "12345"
+            },
+            "job": {
+                "title": "Software Engineer",
+                "type": "Full-time"
+            }
+        },
+        {
+            "id": 2,
+            "name": "Jane Smith",
+            "age": 28,
+            "address": {
+                "street": "456 Oak Avenue",
+                "city": "Another City",
+                "state": "NY",
+                "zipCode": "67890"
+            },
+            "job": {
+                "title": "Graphic Designer",
+                "type": "Part-time"
+            }
+        },
+        {
+            "id": 3,
+            "name": "Bob Johnson",
+            "age": 35,
+            "address": {
+                "street": "789 Pine Road",
+                "city": "Some City",
+                "state": "TX",
+                "zipCode": "54321"
+            },
+            "job": {
+                "title": "Data Analyst",
+                "type": "Contract"
+            }
+        }
+    ]
+}
