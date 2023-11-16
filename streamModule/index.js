@@ -19,6 +19,14 @@ server.on('request', (req, res) => {
     readableStream.on('end', () => {
         res.end()
     })
+    readableStream.on('error', (err) => {
+        console.log(err)
+        res.end('file not found')
+    })
+
+    // with pipe mthod  this is best and short method (search on them if u revise)
+    const rStream = fs.createReadStream('input.txt');
+    rStream.pipe(res)
 })
 
 server.listen(port, "127.0.0.1", () => {
