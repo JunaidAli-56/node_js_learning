@@ -7,14 +7,25 @@ const port = 8000;
 // __dirname is wrapper function
 const staticPath = path.join(__dirname, '../public')
 
-// builtin middleware static
-app.use(express.static(staticPath));
+// set template engine
+app.set('view engine', 'hbs');
 
+// builtin middleware static
+// app.use(express.static(staticPath));
+
+// define the tepmlate engine or dynamix Router..
 app.get('/', (req, res) => {
-    res.send('welcome to the express world')
+    res.render('index', {
+        userName: 'Jarviz',
+    })
 })
-app.get('/', (req, res) => {
-    res.send('welcome to the express world')
+
+// app.get('/', (req, res) => {
+//     res.send('welcome to the express world')
+// })
+
+app.get('/about', (req, res) => {
+    res.send('welcome to the express about world')
 })
 
 app.listen(port, () => {
