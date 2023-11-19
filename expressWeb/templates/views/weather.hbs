@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>headerLinks}}
+    <link rel="stylesheet" href="../../public/css/style.css">
+</head>
+
+<body>
+    {{>header}}
+    <main class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-12 mx-auto">
+                    <div class="row d-flex align-items-center justify-content-center " style="min-height: 90vh;">
+                        <div class="col-6">
+                            <div class="input-group my-3">
+                                <input type="text" class="form-control" id="cityName" placeholder="Enter city name..."
+                                    aria-label="Enter city name...">
+                                <button class="btn btn-outline-primary" type="button" id="submitBtn" value="search">
+                                    Submit
+                                </button>
+                            </div>
+
+                            <div class="container bg-dark rounded-3 text-white p-3 mb-5">
+                                <div class="row">
+                                    <div class="col d-flex justify-content-between">
+                                        <p id="day">Tue</p>
+                                        <p id="today_date">13 OCT</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p id="city_name">Name of City</p>
+                                        <div class="data_hide d-flex justify-content-center align-items-center">
+                                            <h1 id="temp">0<sup>o</sup>C</h1>
+                                            <h1 id='temp_status' class="ms-3"><i class="bi bi-cloud-fill"></i></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{>footer}}
+    {{>footerLinks}}
+    <script>
+        const submitBtn = document.getElementById('submitBtn');
+        const cityName = document.getElementById('cityName');
+        const city_name = document.getElementById('city_name');
+        const temp = document.getElementById('temp');
+        const temp_status = document.getElementById('temp_status');
+
+        const getInfo = async () => {
+            let cityVal = cityName.value;
+            console.log(cityVal)
+
+            if (cityVal === "") {
+                city_name.innerText = `Please write city name before search..`
+            } else {
+                try {
+                    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityVal}&units=metrics&appid=66a972e53267d9d546335ebfebce1d97`
+                    const response = await fetch(url);
+                    const data = await response.json()
+                    const arrData = [data];
+
+                    city_name.innerText = `${arrData[0].name}, ${arrData[0].sys.country}`;
+                    temp.innerText = arrData[0].main.temp;
+
+                    const tempMood = arrData[0].weather[0].main;
+
+                    if (tempMood === 'Clear') {
+                        temp_status.innerHTML = "<i class='bi bi-sun-fill'></i>"
+                    } else if (tempMood === 'Clouds') {
+                        temp_status.innerHTML = "<i class='bi bi-cloud-fill'></i>"
+                    } else if (tempMood === 'Rain') {
+                        temp_status.innerHTML = "<i class='bi bi-cloud-drizzle-fill'></i>"
+                    }
+                }
+                catch {
+                    city_name.innerText = `Please write city name properly`
+                }
+            }
+        }
+        submitBtn.addEventListener('click', getInfo)
+    </script>
+</body>
+
+</html>
