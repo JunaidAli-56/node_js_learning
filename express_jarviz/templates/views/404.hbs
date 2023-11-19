@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>headerLinks}}
+    <link rel="stylesheet" href="../../public/css/style.css">
+</head>
+
+<body>
+    {{!-- navbar --}}
+    {{>header}}
+    <div class="container">
+        <div class="row my-4">
+            <div class="col d-flex flex-column justify-content-center align-items-center">
+                <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--_GqDpWw0--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/7aqcppklh6bexoa70320.jpg"
+                    class="img-fluid rounded-3" alt="...">
+                <h4>
+                    {{errorComments}}
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    {{>footer}}
+    {{>footerLinks}}
+</body>
+
+</html>

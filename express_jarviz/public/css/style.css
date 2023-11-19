@@ -3,5 +3,13 @@ h1 {
 }
 
 main {
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
+    background-color: aquamarine !important;
+}
+
+.footer {
+    margin-top: auto;
+    color: rebeccapurple;
 }
