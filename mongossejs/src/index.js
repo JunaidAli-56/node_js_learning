@@ -67,6 +67,7 @@ const createDoc = async () => {
 }
 // createDoc();
 
+// Read document
 const readDoc = async () => {
     try {
         // it will read or show aa documents.
@@ -77,7 +78,17 @@ const readDoc = async () => {
         const result2 = await UserModel.find().select({ name: 1 });
         // it will show the number of  documents of a collection
         const result3 = await UserModel.find().limit(2);
-        console.log(result3)
+
+        // with comparison operators
+        const result4 = await UserModel.find({ age: { $gt: 22 } });
+        const result5 = await UserModel.find({ age: { $lt: 22 } });
+        const result6 = await UserModel.find({ age: { $lte: 22 } });
+
+        // $in operator matches the value of specfied in an Array.
+        const result7 = await UserModel.find({ name: { $in: ['junaid', 'ali'] } });
+        // $nin operator matches none the value of specfied in an Array means show those vaue whose not specified in an array
+        const result8 = await UserModel.find({ name: { $nin: ['junaid', 'ali'] } });
+        console.log(result8)
     } catch (error) {
         console.log(error)
     }
