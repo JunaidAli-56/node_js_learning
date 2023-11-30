@@ -78,6 +78,11 @@ const readDoc = async () => {
         const result2 = await UserModel.find().select({ name: 1 });
         // it will show the number of  documents of a collection
         const result3 = await UserModel.find().limit(2);
+        // it will count the number of documents matching with query or expression 
+        const resultCount = await UserModel.find({ name: 'junaid' }).count();
+        const resultSort = await UserModel.find().select({ name: 1 }).sort({ name: -1 });
+
+        console.log(resultSort)
 
         // with comparison operators
         const result4 = await UserModel.find({ age: { $gt: 22 } });
@@ -101,7 +106,7 @@ const readDoc = async () => {
 
         // const result12 = await UserModel.find({ name: { $ne: "junaid" } });
         const result13 = await UserModel.find({ age: { $not: { $gt: 22 } } })
-        console.log(result13)
+        // console.log(result13)
     } catch (error) {
         console.log(error)
     }
