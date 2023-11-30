@@ -111,7 +111,22 @@ const readDoc = async () => {
         console.log(error)
     }
 }
-readDoc();
+// readDoc();
+
+const updateDoc = async (id) => {
+    try {
+        // const result = await UserModel.updateOne({ _id: id }, {
+        const result = await UserModel.findByIdAndUpdate({ _id: id }, {
+            $set: {
+                name: 'Usama Azhar'
+            }
+        })
+        console.log(result)
+    } catch (error) {
+        console.log(error)
+    }
+}
+updateDoc('656620f1c0c00a7fb6c55363')
 
 // 2nd method for Connection.
 // const mongoose = require('mongoose');
