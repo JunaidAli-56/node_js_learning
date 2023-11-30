@@ -115,18 +115,36 @@ const readDoc = async () => {
 
 const updateDoc = async (id) => {
     try {
-        // const result = await UserModel.updateOne({ _id: id }, {
-        const result = await UserModel.findByIdAndUpdate({ _id: id }, {
+        const result = await UserModel.updateOne({ _id: id }, {
+            // const result = await UserModel.findByIdAndUpdate({ _id: id }, {
             $set: {
-                name: 'Usama Azhar'
+                name: 'Usama azhar'
             }
-        })
+        },
+            // {
+            //     new: true,
+            //     useFindAndModify: true
+            // }
+        )
         console.log(result)
     } catch (error) {
         console.log(error)
     }
 }
-updateDoc('656620f1c0c00a7fb6c55363')
+// updateDoc('656620f1c0c00a7fb6c55363');
+
+const deleteDoc = async (_id) => {
+    try {
+        // const result = await UserModel.deleteOne({ _id });
+        // const result = await UserModel.deleteMany({ _id });
+        const result = await UserModel.findByIdAndDelete({ _id });
+        console.log(result)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+deleteDoc('65662a7f2bc48f858ba18116')
 
 // 2nd method for Connection.
 // const mongoose = require('mongoose');
