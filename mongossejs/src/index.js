@@ -88,7 +88,20 @@ const readDoc = async () => {
         const result7 = await UserModel.find({ name: { $in: ['junaid', 'ali'] } });
         // $nin operator matches none the value of specfied in an Array means show those vaue whose not specified in an array
         const result8 = await UserModel.find({ name: { $nin: ['junaid', 'ali'] } });
-        console.log(result8)
+        // console.log(result8)
+
+
+        // with logical operators
+        const result9 = await UserModel.find({ $or: [{ name: 'junaid' }, { age: 23 }] })
+        const result10 = await UserModel.find({ $and: [{ name: 'junaid' }, { age: 23 }] })
+        const result11 = await UserModel.find({ $nor: [{ name: 'junaid' }, { age: 23 }] })
+
+        // If you simply want to find documents where a field is not equal to a particular value, use $ne.
+        // If you need more complex negation or want to express conditions that are not directly handled by $ne, you might use $not.
+
+        // const result12 = await UserModel.find({ name: { $ne: "junaid" } });
+        const result13 = await UserModel.find({ age: { $not: { $gt: 22 } } })
+        console.log(result13)
     } catch (error) {
         console.log(error)
     }
